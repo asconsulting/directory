@@ -47,3 +47,11 @@ array_insert($GLOBALS['BE_MOD']['asc_directory'], 0, array
  * Hooks
  */
 $GLOBALS['TL_HOOKS']['getPageIdFromUrl'][] = array('Asc\DirectoryPage', 'loadListPageFromUrl');
+
+
+/**
+ * Styles
+ */
+ if (version_compare(VERSION, '4.4', '>=')) {
+	$GLOBALS['TL_CSS'][] = 'system/modules/asc_directory/assets/css/backend-contao4.css|static';
+}
