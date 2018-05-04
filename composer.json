@@ -1,0 +1,41 @@
+{
+    "name":"asconsulting/directory",
+    "description":"Directory of records for Contao Open Source CMS",
+    "homepage": "https://andrewstevens.consulting",
+    "keywords":["contao", "directory", "staff", "locations"],
+    "type":"contao-module",
+    "license":"LGPL-3.0-or-later",
+    "authors":[
+        {
+            "name":"Andrew Stevens",
+            "homepage":"https://andrewstevens.consulting"
+        }
+    ],
+    "require":{
+        "php": "~5.4 || ~7.0",
+        "contao/core-bundle": "^3.5.2 || ~4.1",
+        "contao-community-alliance/composer-plugin": "~2.4 || ~3.0",
+    },
+    "require-dev": {
+        "contao/manager-plugin": "^2.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Asc\\": [
+                "system/modules/asc_directory/library"
+            ]
+        }
+    },
+    "extra":{
+        "branch-alias": {
+            "dev-master": "2.5.x-dev",
+            "dev-develop": "2.6.x-dev"
+        },
+        "contao-manager-plugin": "Isotope\\ContaoManager\\Plugin",
+        "contao": {
+            "sources":{
+                "system/modules/asc_directory": "system/modules/asc_directory"
+            }
+        }
+    }
+}
