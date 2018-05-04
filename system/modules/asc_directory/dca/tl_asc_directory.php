@@ -157,7 +157,7 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',
-            'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'clr w50'),
+            'eval'                    => array('maxlength'=>255, 'tl_class'=>'clr w50'),
             'sql'                     => "varchar(255) NOT NULL default ''"
         ),
 		'company' => array
@@ -292,7 +292,7 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'rgxp'=>'email', 'unique'=>true, 'decodeEntities'=>true, 'tl_class'=>'clr w50'),
+			'eval'                    => array('maxlength'=>255, 'rgxp'=>'email', 'unique'=>true, 'decodeEntities'=>true, 'tl_class'=>'clr w50'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
 		'website' => array
