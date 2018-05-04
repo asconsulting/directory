@@ -26,16 +26,16 @@
             ]
         }
     },
-    "extra":{
-        "branch-alias": {
-            "dev-master": "2.5.x-dev",
-            "dev-develop": "2.6.x-dev"
-        },
-        "contao-manager-plugin": "Isotope\\ContaoManager\\Plugin",
+    "extra": {
         "contao": {
-            "sources":{
-                "system/modules/asc_directory": "system/modules/asc_directory"
+            "sources": {
+                "": "system/modules/asc_directory"
             }
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist"
+	}
 }
