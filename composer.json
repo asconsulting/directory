@@ -1,6 +1,5 @@
 {
     "name":"asconsulting/directory",
-	"version": "1.0.0",
     "description":"Directory of records for Contao Open Source CMS",
     "homepage": "https://andrewstevens.consulting",
     "keywords":["contao", "directory", "staff", "locations"],
