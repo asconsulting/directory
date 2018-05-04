@@ -1,0 +1,17 @@
+<div class="mod_staff">
+	<h1><?php echo $this->title ?></h1>
+	<?php foreach ($this->staff as $arrStaff): ?>
+	<div class="staff_item item">
+		<img src='<?php echo $arrStaff['photo']; ?>' class='staff_photo'>
+		<h2><?php echo $arrStaff['name']; ?></h2>
+		<h3><?php echo $arrStaff['title']; ?></h3>
+		<div class='staff_details'>
+			<span class='email'>
+				<a href='mailto:<?php echo $arrStaff['email']; ?>'><?php echo $arrStaff['email']; ?></a>
+				<div class='about'><?php echo $arrStaff['about']; ?></div>
+				<div class='start_year'><h4>Start Year</h4><?php echo $arrStaff['start_year']; ?></div>
+			</div>
+		</div>
+	</div>
+	<?php endforeach; ?>
+</div>
