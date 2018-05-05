@@ -25,8 +25,8 @@ class DirectoryPage extends \Contao\Frontend {
 			return $arrFragments;
 		}
 		
-		$objAttribute = \Database::getInstance()->execute("SELECT field_name, attributeListPage FROM tl_iso_attribute WHERE type LIKE 'attributeCategory' ORDER BY CHAR_LENGTH(field_name) DESC");
-			
+		// Is section?
+		
 		while($objAttribute->next()) { 
 			if (substr($arrFragments[0], 0, (strlen($objAttribute->field_name) + 1)) == ($objAttribute->field_name ."_")) {
 				$objNewPage = \PageModel::findPublishedByIdOrAlias($objAttribute->attributeListPage);
@@ -35,6 +35,10 @@ class DirectoryPage extends \Contao\Frontend {
 				}
 			}
 		}
+		
+		// Is Record?
+		
+		
 		
         return $arrFragments;
     }
