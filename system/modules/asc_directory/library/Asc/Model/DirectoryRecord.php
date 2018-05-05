@@ -12,6 +12,8 @@
  
 namespace Asc\Model;
 
+use Asc\Model\DirectoryRecord as AscDirectory
+
 class DirectoryRecord extends \Model
 {
 
