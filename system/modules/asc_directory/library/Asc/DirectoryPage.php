@@ -16,7 +16,7 @@ namespace Asc;
 /**
  * Class Asc\DirectoryPage
  */
-class DirectoryPage extends \Contao\Frontend {
+class DirectoryPage extends \Frontend {
 	
 	public function loadListPageFromUrl($arrFragments)
     {
