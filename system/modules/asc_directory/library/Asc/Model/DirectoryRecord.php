@@ -10,7 +10,7 @@
  */
 
  
-namespace Asc;
+namespace Asc\Model;
 
 class DirectoryRecord extends \Model
 {
