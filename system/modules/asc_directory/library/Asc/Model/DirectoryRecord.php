@@ -21,4 +21,11 @@ class DirectoryRecord extends \Model
 	 */
 	protected static $strTable = 'tl_asc_directory';
 
+	public static function findByArray($arrOptions=array())
+	{
+//		$t = static::$strTable;
+	
+		return static::find($arrOptions);
+	}
+	
 }

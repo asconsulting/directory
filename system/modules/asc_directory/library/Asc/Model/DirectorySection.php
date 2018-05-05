@@ -21,4 +21,11 @@ class DirectorySection extends \Model
 	 */
 	protected static $strTable = 'tl_asc_directory_section';
 
+	
+	public static function findByArray($arrOptions=array())
+	{
+//		$t = static::$strTable;
+	
+		return static::find($arrOptions);
+	}
 }
