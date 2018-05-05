@@ -1,0 +1,20 @@
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<?php if(!empty($this->sections)): ?>
+
+<div class="directory_sections_list">
+<ul>
+<?php foreach ($this->sections as $section): ?>
+<li class="section">
+	<a href='<?php echo $section['alias']; ?>.html'>
+	<?php echo $section['name']; ?>
+	<?php echo $section['description']; ?>
+	<?php echo $section['image']; ?>
+	</a>
+</li>
+<?php endforeach; ?>
+</ul>
+</div>

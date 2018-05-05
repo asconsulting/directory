@@ -85,6 +85,10 @@ class DirectoryList extends \Contao\Module
 			$arrResults[] = $objDirectoryRecord->row();
 		}
 		
+		$this->Template->section_name = $objDirectorySection->name;
+		$this->Template->section_image = $objDirectorySection->image;
+		$this->Template->section_description = $objDirectorySection->description;
+		
 		$this->Template->records = $arrResults;
     }
 

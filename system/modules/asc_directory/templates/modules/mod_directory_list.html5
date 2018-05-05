@@ -1,0 +1,25 @@
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<div class="section_header">
+<?php echo $this->section_name; ?>
+<?php echo $this->section_image; ?>
+</div>
+
+<?php if(!empty($this->records)): ?>
+
+<div class="directory_records_list">
+<ul>
+<?php foreach ($this->records as $record): ?>
+<li class="section">
+	<a href='<?php echo $record['alias']; ?>.html'>
+	<?php echo $record['name']; ?>
+	<?php echo $record['description']; ?>
+	<?php echo $record['image']; ?>
+	</a>
+</li>
+<?php endforeach; ?>
+</ul>
+</div>
