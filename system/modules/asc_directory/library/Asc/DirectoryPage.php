@@ -16,7 +16,7 @@ namespace Asc;
 /**
  * Class Asc\DirectoryPage
  */
-class DirectoryPage extends Frontend {
+class DirectoryPage extends \Contao\Frontend {
 	
 	public function loadListPageFromUrl($arrFragments)
     {
@@ -24,9 +24,6 @@ class DirectoryPage extends Frontend {
 		if ($objPage = \PageModel::findPublishedByIdOrAlias($arrFragments[0])) {
 			return $arrFragments;
 		}
-		
-		
-		
 		
 		$objAttribute = \Database::getInstance()->execute("SELECT field_name, attributeListPage FROM tl_iso_attribute WHERE type LIKE 'attributeCategory' ORDER BY CHAR_LENGTH(field_name) DESC");
 			
