@@ -28,6 +28,6 @@ class DirectorySection extends \Model
 	
 		
 	
-		return $this->find($arrOptions);
+		return parent::find($arrOptions);
 	}
 }

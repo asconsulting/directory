@@ -25,7 +25,7 @@ class DirectoryRecord extends \Model
 	{
 //		$t = static::$strTable;
 	
-		return $this->find($arrOptions);
+		return parent::find($arrOptions);
 	}
 	
 }
