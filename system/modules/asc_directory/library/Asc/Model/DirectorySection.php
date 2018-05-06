@@ -14,7 +14,8 @@ namespace Asc\Model;
 
 class DirectorySection extends \Model
 {
-	var $arrClassNames = array('tl_asc_directory_section' => "\Asc\Model\DirectorySection");
+	
+	static $arrClassNames = array('tl_asc_directory_section' => "\Asc\Model\DirectorySection");
 	
 	/**
 	 * Table name
