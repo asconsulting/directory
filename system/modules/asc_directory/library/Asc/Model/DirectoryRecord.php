@@ -15,7 +15,7 @@ namespace Asc\Model;
 class DirectoryRecord extends \Model
 {
 
-	var $arrClassNames['tl_asc_directory_section'] = "\Asc\Model\DirectoryRecord";
+	var $arrClassNames = array('tl_asc_directory_record' => "\Asc\Model\DirectoryRecord");
 	
 	/**
 	 * Table name
