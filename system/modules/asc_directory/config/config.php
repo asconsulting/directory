@@ -42,6 +42,11 @@ array_insert($GLOBALS['BE_MOD']['asc_directory'], 0, array
 	)
 ));
 
+/**
+ * Models
+ */
+$GLOBALS['TL_MODELS']['tl_asc_directory'] = 'Asc\Model\DirectoryRecord';
+$GLOBALS['TL_MODELS']['tl_asc_directory_section'] = 'Asc\Model\DirectorySection';
 
 /**
  * Hooks
