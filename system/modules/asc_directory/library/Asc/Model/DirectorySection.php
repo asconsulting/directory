@@ -12,8 +12,6 @@
  
 namespace Asc\Model;
 
-use Asc\Model\DirectorySection as Contao\AscDirectorySectionModel;
-
 class DirectorySection extends \Model
 {
 
