@@ -33,12 +33,12 @@ array_insert($GLOBALS['BE_MOD']['asc_directory'], 0, array
 	'directory' => array
 	(
 		'tables' => array('tl_asc_directory'),
-		'icon'   => '/system/modules/asc_directory/assets/directory.png'
+		'icon'   => '/system/modules/asc_directory/assets/directory.svg'
 	),
 	'sections' => array
 	(
 		'tables' => array('tl_asc_directory_section'),
-		'icon'   => '/system/modules/asc_directory/assets/directory.png'
+		'icon'   => '/system/modules/asc_directory/assets/directory.svg'
 	)
 ));
 
