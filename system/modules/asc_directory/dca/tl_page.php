@@ -23,7 +23,7 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['asc_directorySectionPage'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_page']['asc_directorySectionPage'],
     'exclude'                 => true,
     'inputType'               => 'checkbox',
-    'eval'                    => array('submitOnChange'=>true, 'tl_class'=>'clr', 'fallback'=>true),
+    'eval'                    => array('tl_class'=>'clr m12 w50', 'fallback'=>true),
     'sql'                     => "char(1) NOT NULL default ''",
 );
 
@@ -32,6 +32,6 @@ $GLOBALS['TL_DCA']['tl_page']['fields']['asc_directoryReaderPage'] = array
     'label'                   => &$GLOBALS['TL_LANG']['tl_page']['asc_directoryReaderPage'],
     'exclude'                 => true,
     'inputType'               => 'checkbox',
-    'eval'                    => array('submitOnChange'=>true, 'tl_class'=>'clr', 'fallback'=>true),
+    'eval'                    => array('tl_class'=>'m12 w50', 'fallback'=>true),
     'sql'                     => "char(1) NOT NULL default ''",
 );

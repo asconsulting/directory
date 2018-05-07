@@ -26,19 +26,18 @@ class DirectoryPage {
 		}
 		
 		// Is section?
-		
-		while($objAttribute->next()) { 
-			if (substr($arrFragments[0], 0, (strlen($objAttribute->field_name) + 1)) == ($objAttribute->field_name ."_")) {
-				$objNewPage = \PageModel::findPublishedByIdOrAlias($objAttribute->attributeListPage);
-				if ($objNewPage) {
-					return array($objNewPage->alias);
-				}
+		if ($objDirectorySection = DirectorySection::findByIdOrAlias($arrFragments[0])) {
+			if ($objPage = \PageModel::find(array('column' => array('asc_directorySectionPage=1', 'published=1')))) {
+				return $objPage->alias;
 			}
 		}
 		
-		// Is Record?
-		
-		
+		// Is Record
+		if ($objDirectoryRecord = DirectoryRecord::findByIdOrAlias($arrFragments[0])) {
+			if ($objPage = \PageModel::find(array('column' => array('asc_directoryRecordPage=1', 'published=1')))) {
+				return $objPage->alias;
+			}
+		}
 		
         return $arrFragments;
     }
