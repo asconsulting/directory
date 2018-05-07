@@ -11,6 +11,7 @@
 		</span>
 	<?php endforeach; ?>
 	<input type="hidden" name="directory_search" value="<?php $this->directory_search; ?>">
+	<input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
 	<input type="text" name="search" value="<?php $this->search; ?>">
 </form>
 
