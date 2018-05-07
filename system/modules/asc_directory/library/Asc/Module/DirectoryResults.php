@@ -151,10 +151,6 @@ class DirectoryResults extends \Contao\Module
 die(print_r($arrColumns, TRUE));
 		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns));
 		
-		if (!$objDirectoryRecord) {
-			return false;
-		}
-		
 		$arrResults = array();
 		while($objDirectoryRecord->next()) {
 			$arrRecord = $objDirectoryRecord->row();
