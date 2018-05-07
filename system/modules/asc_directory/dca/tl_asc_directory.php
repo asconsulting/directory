@@ -234,9 +234,8 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
 			'sorting'                 => true,
 			'inputType'               => 'select',
 			'options'                 => System::getCountries(),
-			'default'				  => 'us',
 			'eval'                    => array('includeBlankOption'=>true, 'chosen'=>true, 'tl_class'=>'w50'),
-			'sql'                     => "varchar(2) NOT NULL default 'us'"
+			'sql'                     => "varchar(2) NOT NULL default ''"
 		),
 		'latitude' => array
         (

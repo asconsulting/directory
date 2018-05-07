@@ -109,7 +109,7 @@ class DirectoryList extends \Contao\Module
 					$arrRecord['image'] = '';
 				}
 			}
-			$arrSections[] = $arrRecord;
+			$arrResults[] = $arrRecord;
 		}
 		
 

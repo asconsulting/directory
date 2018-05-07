@@ -4,12 +4,138 @@
 <?php endif; ?>
 
 <div class="record_header">
-<?php echo $this->name; ?>
-<?php echo $this->image; ?>
+	<h2><?php echo $this->name; ?></h2>
+	<?php if ($this->image): ?>
+	<img class='directory_image' src="<?php echo $this->image; ?>" alt="<?php echo $this->name; ?>"> 
+	<?php endif; ?>
 </div>
 
 <div class="record_details">
-<?php echo $this->description; ?>
+	<?php if ($this->first_name): ?>
+		<div class="field first_name">
+			<span class="label">First Name:</span> 
+			<span class="field_data first_name"><?php echo $this->first_name; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->last_name): ?>
+		<div class="field last_name">
+			<span class="label">Last Name:</span> 
+			<span class="field_data last_name"><?php echo $this->last_name; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->title): ?>
+		<div class="field title">
+			<span class="label">Title:</span> 
+			<span class="field_data title"><?php echo $this->title; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->company): ?>
+		<div class="field company">
+			<span class="label">Company:</span> 
+			<span class="field_data company"><?php echo $this->company; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->address_1): ?>
+		<div class="field address_1">
+			<span class="label">Address 1:</span> 
+			<span class="field_data address_1"><?php echo $this->address_1; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->address_2): ?>
+		<div class="field address_2">
+			<span class="label">Address 2:</span> 
+			<span class="field_data address_2"><?php echo $this->address_2; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->address_3): ?>
+		<div class="field address_3">
+			<span class="label">Address 3:</span> 
+			<span class="field_data address_1"><?php echo $this->address_3; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->city): ?>
+		<div class="field city">
+			<span class="label">City:</span> 
+			<span class="field_data city"><?php echo $this->city; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->state): ?>
+		<div class="field state">
+			<span class="label">State:</span> 
+			<span class="field_data state"><?php echo $this->state; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->zip): ?>
+		<div class="field zip">
+			<span class="label">Zip:</span> 
+			<span class="field_data zip"><?php echo $this->zip; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->country): ?>
+		<div class="field country">
+			<span class="label">Country:</span> 
+			<span class="field_data country"><?php echo $this->country; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->latitude): ?>
+		<div class="field latitude">
+			<span class="label">Latitude:</span> 
+			<span class="field_data latitude"><?php echo $this->latitude; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->longitude): ?>
+		<div class="field longitude">
+			<span class="label">Longitude:</span> 
+			<span class="field_data longitude"><?php echo $this->longitude; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->phone): ?>
+		<div class="field phone">
+			<span class="label">Phone:</span> 
+			<span class="field_data phone"><?php echo $this->phone; ?></span>
+		</div>
+	<?php endif; ?>	
+	<?php if ($this->mobile): ?>
+		<div class="field mobile">
+			<span class="label">Mobile:</span> 
+			<span class="field_data mobile"><?php echo $this->mobile; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->fax): ?>
+		<div class="field fax">
+			<span class="label">Fax:</span> 
+			<span class="field_data fax"><?php echo $this->fax; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->email): ?>
+		<div class="field email">
+			<span class="label">Email:</span> 
+			<span class="field_data email"><?php echo $this->email; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->website): ?>
+		<div class="field website">
+			<span class="label">Website:</span> 
+			<span class="field_data website"><?php echo $this->website; ?></span>
+		</div>
+	<?php endif; ?>
+	<?php if ($this->description): ?>
+		<div class="field description">
+			<span class="label">Description:</span> 
+			<span class="field_data description"><?php echo $this->description; ?></span>
+		</div>
+	<?php endif; ?>
+	<div class="sections">
+		<ul>
+		<?php foreach ($this->sections as $section): ?>
+		<li class="directory_section">
+			<h2><a href="<?php echo $section['alias']; ?>.html"><?php echo $section['name']; ?></a></h2>
+			<img class='directory_image' src="<?php echo $section['image']; ?>" alt="<?php echo $section['name']; ?>"> 
+			<?php echo $section['description']; ?>
+		</li>
+		<?php endforeach; ?>
+		</ul>
+	</div>
 </div>
 
 </div>

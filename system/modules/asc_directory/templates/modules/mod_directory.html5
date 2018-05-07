@@ -8,12 +8,12 @@
 <div class="directory_sections_list">
 <ul>
 <?php foreach ($this->sections as $section): ?>
-<li class="section">
-	<a href='<?php echo $section['alias']; ?>.html'>
-	<?php echo $section['name']; ?>
+<li class="directory_section">
+	<h2><a href="<?php echo $section['alias']; ?>.html"><?php echo $section['name']; ?></a></h2>
+	<?php if ($section['image']): ?>
+	<img class='directory_image' src="<?php echo $section['image']; ?>" alt="<?php echo $section['name']; ?>"> 
+	<?php endif; ?>
 	<?php echo $section['description']; ?>
-	<?php echo $section['image']; ?>
-	</a>
 </li>
 <?php endforeach; ?>
 </ul>
