@@ -30,12 +30,12 @@ if (!is_array($GLOBALS['BE_MOD']['asc_directory']))
 
 array_insert($GLOBALS['BE_MOD']['asc_directory'], 0, array
 ( 
-	'directory' => array
+	'asc_records' => array
 	(
 		'tables' => array('tl_asc_directory'),
 		'icon'   => '/system/modules/asc_directory/assets/directory.svg'
 	),
-	'sections' => array
+	'asc_sections' => array
 	(
 		'tables' => array('tl_asc_directory_section'),
 		'icon'   => '/system/modules/asc_directory/assets/directory.svg'
