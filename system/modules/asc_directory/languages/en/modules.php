@@ -15,5 +15,7 @@ $GLOBALS['TL_LANG']['FMD']['asc_directory_reader']		= array('Directory Reader', 
 /**
  * Back end modules
  */
-$GLOBALS['TL_LANG']['MOD']['asc_sections'] 			= array('Sections', 'Configure sections for directory');
-$GLOBALS['TL_LANG']['MOD']['asc_directory'] 		= array('Records', 'Manage directory records');
+$GLOBALS['TL_LANG']['MOD']['asc_directory'] 	= array('Directory', 'Directory Management');
+$GLOBALS['TL_LANG']['MOD']['directory'] 		= array('Records', 'Manage directory records');
+$GLOBALS['TL_LANG']['MOD']['sections'] 			= array('Sections', 'Configure sections for directory');
+
