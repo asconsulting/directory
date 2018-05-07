@@ -41,8 +41,6 @@ class DirectoryPage {
 			}
 		}
 		
-		die(print_r($arrFragments, TRUE));
-		
         return $arrFragments;
     }
 }

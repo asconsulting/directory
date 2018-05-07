@@ -324,7 +324,7 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
 			'exclude'                 => true,
 			'inputType'               => 'fileTree',
 			'eval'                    => array('filesOnly'=>true, 'extensions'=>Config::get('validImageTypes'), 'fieldType'=>'radio', 'class'=>'clr w50'),
-			'sql'                     => "binary(16) NULL"
+			'sql'                     => "blob NULL"
 		),
 		'description' => array
 		(

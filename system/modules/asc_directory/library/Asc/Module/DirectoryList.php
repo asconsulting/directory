@@ -106,8 +106,6 @@ class DirectoryList extends \Contao\Module
 			$arrResults[] = $arrRecord;
 		}
 		
-
-		
 		$this->Template->records = $arrResults;
     }
 
