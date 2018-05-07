@@ -71,6 +71,10 @@ class DirectoryList extends \Contao\Module
 			return;
 		}
 		
+		$this->Template->section_name = $objDirectorySection->name;
+		$this->Template->section_image = $objDirectorySection->image;
+		$this->Template->section_description = $objDirectorySection->description;
+		
 		$arrColumns = array("FIND_IN_SET('" .$objDirectorySection->id ."', sections)");
 		$arrColumns[] = "published='1'";
 			
@@ -85,9 +89,7 @@ class DirectoryList extends \Contao\Module
 			$arrResults[] = $objDirectoryRecord->row();
 		}
 		
-		$this->Template->section_name = $objDirectorySection->name;
-		$this->Template->section_image = $objDirectorySection->image;
-		$this->Template->section_description = $objDirectorySection->description;
+
 		
 		$this->Template->records = $arrResults;
     }

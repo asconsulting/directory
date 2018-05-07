@@ -61,6 +61,7 @@ class DirectoryResults extends \Contao\Module
 		if (!$intSearchModule) {
 			return FALSE;
 		}
+		
 		$objSearchModule = ModuleModel::findByPk($intSearchModule);
 		if (!$objSearchModule || $objSearchModule->type != 'asc_directory_search') {
 			return FALSE;
@@ -68,7 +69,7 @@ class DirectoryResults extends \Contao\Module
 
 		$this->Template->results = array();
 		
-		$strKeywords = \Input::post('s');
+		$strKeywords = \Input::post('search');
 
 		// Clean the keywords
 		$strKeywords = utf8_strtolower($strKeywords);
@@ -83,16 +84,19 @@ class DirectoryResults extends \Contao\Module
 			$strKeywords = preg_replace(array('/\. /', '/\.$/', '/: /', '/:$/', '/, /', '/,$/', '/[^\w\' *+".:,-]/u'), ' ', $strKeywords);
 		}
 
+		
 		// Check keyword string
 		if (!strlen($strKeywords))
 		{
 			return false;
 		}
 		
-		if (!is_array($this->directorySearchFields)) {
-			$arrFields = unserialize($this->directorySearchFields);
+		if (!is_array($objSearchModule->directoryFields)) {
+			$arrFields = unserialize($objSearchModule->directoryFields);
+		} else {
+			$arrFields = $objSearchModule->directoryFields;
 		}
-		
+
 		if (!is_array($arrFields) || empty($arrFields)) {
 			return false;
 		}
@@ -100,13 +104,14 @@ class DirectoryResults extends \Contao\Module
 		$arrSearchSections = \Input::post('section');
 		
 		$arrSections = array();
-		$objDirectorySection = DirectorySection::findAll($arrSections);
+		$objDirectorySection = DirectorySection::findAll();
+		
 		while ($objDirectorySection->next()) {
-			if (in_array($objDirectorySection->id, $arrSections) && $objDirectorySection->published) { 
+			if (in_array($objDirectorySection->id, $arrSearchSections) && $objDirectorySection->published) { 
 				$arrSections[] = $objDirectorySection->row();
 			}
 		}
-		
+
 		if (!empty($arrSearchSections) && empty($arrSections)) {
 			return false;
 		}
@@ -114,14 +119,14 @@ class DirectoryResults extends \Contao\Module
 		$arrColumns = array();
 		if (!empty($arrSections)) {
 			$strColumn = '(';
-			foreach ($arrSections as $intSection) {
-				$strColumn .= "FIND_IN_SET('" .$intSection ."', sections) OR ";
+			foreach ($arrSections as $arrSection) {
+				$strColumn .= "FIND_IN_SET('" .$arrSection['id'] ."', sections) OR ";
 			}
 			$strColumn = substr($strColumn, 0, -4);
 			$strColumn .= ")";
 			$arrColumns[] = $strColumn;
 		}
-		
+
 		$strColumn = '(';
 		foreach ($arrFields as $strField) {
 			$strColumn .= $strField ." LIKE '%" .$strKeywords ."%' OR ";
@@ -131,7 +136,7 @@ class DirectoryResults extends \Contao\Module
 		$arrColumns[] = $strColumn;
 		
 		$arrColumns[] = "published='1'";
-			
+
 		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns));
 		
 		if (!$objDirectoryRecord) {

@@ -313,7 +313,7 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
 			'exclude'                 => true,
 			'search'                  => true,
 			'inputType'               => 'checkboxWizard',
-			'eval'                    => array('multiple'=>true, 'csv'=>true, 'tl_class'=>'clr'),
+			'eval'                    => array('multiple'=>true, 'csv'=>',', 'tl_class'=>'clr'),
 			'foreignKey'              => 'tl_asc_directory_section.name',
 			'relation'                => array('type'=>'hasMany', 'load'=>'lazy'),	
 			'sql'                     => "mediumtext NULL"
