@@ -30,14 +30,14 @@ class DirectoryPage {
 		// Is section?
 		if ($objDirectorySection = DirectorySection::findByIdOrAlias($arrFragments[0])) {
 			if ($objPage = \PageModel::findAll(array('column' => array("asc_directorySectionPage='1'", "published='1'")))) {
-				return $objPage->alias;
+				return array($objPage->alias);
 			}
 		}
 		
 		// Is Record
 		if ($objDirectoryRecord = DirectoryRecord::findByIdOrAlias($arrFragments[0])) {
 			if ($objPage = \PageModel::findAll(array('column' => array("asc_directoryRecordPage='1'", "published='1'")))) {
-				return $objPage->alias;
+				return array($objPage->alias);
 			}
 		}
 		
