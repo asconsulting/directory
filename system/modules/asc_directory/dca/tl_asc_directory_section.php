@@ -172,7 +172,8 @@ $GLOBALS['TL_DCA']['tl_asc_directory_section'] = array
 			'exclude'                 => true,
 			'label'                   => &$GLOBALS['TL_LANG']['tl_asc_directory_section']['published'],
 			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
+			'filter'                  => true,
+			'eval'                    => array('doNotCopy'=>true),
 			'sql'                     => "char(1) NOT NULL default ''"
 		)
     )

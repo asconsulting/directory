@@ -213,6 +213,7 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
             'label'                   => &$GLOBALS['TL_LANG']['tl_asc_directory']['state'],
             'exclude'                 => true,
             'search'                  => true,
+			'filter'                  => true,
             'inputType'               => 'text',
             'eval'                    => array('maxlength'=>64, 'tl_class'=>'w50'),
             'sql'                     => "varchar(64) NOT NULL default ''"
@@ -353,7 +354,8 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
 			'exclude'                 => true,
 			'label'                   => &$GLOBALS['TL_LANG']['tl_asc_directory']['published'],
 			'inputType'               => 'checkbox',
-			'eval'                    => array('submitOnChange'=>true, 'doNotCopy'=>true),
+			'filter'                  => true,
+			'eval'                    => array('doNotCopy'=>true),
 			'sql'                     => "char(1) NOT NULL default ''"
 		)
     )
