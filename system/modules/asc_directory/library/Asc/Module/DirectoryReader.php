@@ -76,10 +76,37 @@ class DirectoryReader extends \Contao\Module
 		$objDirectorySection = DirectorySection::findMultipleByIds($arrSections);
 		$arrSections = array();
 		while ($objDirectorySection->next()) {
-			$arrSections[] = $objDirectorySection->row();
+			$arrRecord = $objDirectorySection->row();
+			
+			if ($arrRecord['image']) {
+				$strImage = '';
+				$uuid = \StringUtil::binToUuid($arrRecord['image']);
+				$objFile = \FilesModel::findByUuid($uuid);
+				$strImage = $objFile->path;
+				if ($objFile) {
+					$arrRecord['image'] = $strImage;
+				} else {
+					$arrRecord['image'] = '';
+				}
+			}
+			$arrSections[] = $arrRecord;
 		}
 		
-		$this->Template->setData($objDirectoryRecord->row());
+		$arrRecord = $objDirectoryRecord->row();
+		if ($arrRecord['image']) {
+			$strImage = '';
+			$uuid = \StringUtil::binToUuid($arrRecord['image']);
+			$objFile = \FilesModel::findByUuid($uuid);
+			$strImage = $objFile->path;
+			if ($objFile) {
+				$arrRecord['image'] = $strImage;
+			} else {
+				$arrRecord['image'] = '';
+			}
+		}
+
+		
+		$this->Template->setData($arrRecord);
 		$this->Template->sections = $arrSections;	
     }
 

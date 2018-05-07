@@ -71,8 +71,18 @@ class DirectoryList extends \Contao\Module
 			return;
 		}
 		
+
+		if ($objDirectorySection->image) {
+			$strImage = '';
+			$uuid = \StringUtil::binToUuid($objDirectorySection->image);
+			$objFile = \FilesModel::findByUuid($uuid);
+			$strImage = $objFile->path;
+			if ($objFile) {
+				$this->Template->section_image = $strImage;
+			}
+		}
+		
 		$this->Template->section_name = $objDirectorySection->name;
-		$this->Template->section_image = $objDirectorySection->image;
 		$this->Template->section_description = $objDirectorySection->description;
 		
 		$arrColumns = array("FIND_IN_SET('" .$objDirectorySection->id ."', sections)");
@@ -86,7 +96,20 @@ class DirectoryList extends \Contao\Module
 		
 		$arrResults = array();
 		while($objDirectoryRecord->next()) {
-			$arrResults[] = $objDirectoryRecord->row();
+			$arrRecord = $objDirectoryRecord->row();
+			
+			if ($arrRecord['image']) {
+				$strImage = '';
+				$uuid = \StringUtil::binToUuid($arrRecord['image']);
+				$objFile = \FilesModel::findByUuid($uuid);
+				$strImage = $objFile->path;
+				if ($objFile) {
+					$arrRecord['image'] = $strImage;
+				} else {
+					$arrRecord['image'] = '';
+				}
+			}
+			$arrSections[] = $arrRecord;
 		}
 		
 

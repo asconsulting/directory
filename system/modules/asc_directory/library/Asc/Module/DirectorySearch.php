@@ -62,7 +62,20 @@ class DirectorySearch extends \Contao\Module
 		$arrSections = array();
 		$objDirectorySection = DirectorySection::findAll($arrSections);
 		while ($objDirectorySection->next()) {
-			$arrSections[] = $objDirectorySection->row();
+			$arrRecord = $objDirectorySection->row();
+			
+			if ($arrRecord['image']) {
+				$strImage = '';
+				$uuid = \StringUtil::binToUuid($arrRecord['image']);
+				$objFile = \FilesModel::findByUuid($uuid);
+				$strImage = $objFile->path;
+				if ($objFile) {
+					$arrRecord['image'] = $strImage;
+				} else {
+					$arrRecord['image'] = '';
+				}
+			}
+			$arrSections[] = $arrRecord;
 		}
 		
 		$objResultsPage = \PageModel::findPublishedById($this->jumpTo);

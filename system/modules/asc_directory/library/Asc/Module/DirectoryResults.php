@@ -108,7 +108,19 @@ class DirectoryResults extends \Contao\Module
 		
 		while ($objDirectorySection->next()) {
 			if (in_array($objDirectorySection->id, $arrSearchSections) && $objDirectorySection->published) { 
-				$arrSections[] = $objDirectorySection->row();
+				$arrRecord = $objDirectorySection->row();
+				if ($arrRecord['image']) {
+					$strImage = '';
+					$uuid = \StringUtil::binToUuid($arrRecord['image']);
+					$objFile = \FilesModel::findByUuid($uuid);
+					$strImage = $objFile->path;
+					if ($objFile) {
+						$arrRecord['image'] = $strImage;
+					} else {
+						$arrRecord['image'] = '';
+					}
+				}
+				$arrSections[] = $arrRecord;
 			}
 		}
 
@@ -145,7 +157,20 @@ class DirectoryResults extends \Contao\Module
 		
 		$arrResults = array();
 		while($objDirectoryRecord->next()) {
-			$arrResults[] = $objDirectoryRecord->row();
+			$arrRecord = $objDirectoryRecord->row();
+			
+			if ($arrRecord['image']) {
+				$strImage = '';
+				$uuid = \StringUtil::binToUuid($arrRecord['image']);
+				$objFile = \FilesModel::findByUuid($uuid);
+				$strImage = $objFile->path;
+				if ($objFile) {
+					$arrRecord['image'] = $strImage;
+				} else {
+					$arrRecord['image'] = '';
+				}
+			}
+			$arrResults[] = $arrRecord;
 		}
 		
 		$this->Template->directory_search = $this->id;
