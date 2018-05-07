@@ -4,15 +4,18 @@
 <?php endif; ?>
 
 <form id="directory_search" class="directory_search" action="<?php echo $this->action; ?>" method="POST">
+	<input type="hidden" name="directory_search" value="<?php echo $this->directory_search; ?>">
+	<input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
 	<?php foreach($this->sections as $section): ?>
 		<span class="search_section">
 			<input type="checkbox" name="section[]" value="<?php echo $section['id']; ?>">
 			<label><?php echo $section['name']; ?></label>
 		</span>
 	<?php endforeach; ?>
-	<input type="hidden" name="directory_search" value="<?php echo $this->directory_search; ?>">
-	<input type="hidden" name="REQUEST_TOKEN" value="{{request_token}}">
-	<input type="text" name="search" value="<?php $this->search; ?>">
+	<div class="search">
+		<input type="text" name="search" placeholder="Search" value="<?php $this->search; ?>">
+		<button>Search</button>
+	</div>
 </form>
 
 </div>
