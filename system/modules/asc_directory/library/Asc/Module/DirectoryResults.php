@@ -141,32 +141,33 @@ class DirectoryResults extends \Contao\Module
 
 		$strColumn = '(';
 		foreach ($arrFields as $strField) {
-			$strColumn .= $strField ." LIKE '%" .$strKeywords ."%' OR ";
+			//$strColumn .= $strField ." LIKE '" .$strKeywords ."%' OR ";
+			$strColumn .= "INSTR(" .$strField .", '" .$strKeywords ."') > 0 OR ";
 		}
 		$strColumn = substr($strColumn, 0, -4);
 		$strColumn .= ")";
 		$arrColumns[] = $strColumn;
 		
 		$arrColumns[] = "published='1'";
-
-		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns));
 		
 		$arrResults = array();
-		while($objDirectoryRecord->next()) {
-			$arrRecord = $objDirectoryRecord->row();
-			
-			if ($arrRecord['image']) {
-				$strImage = '';
-				$uuid = \StringUtil::binToUuid($arrRecord['image']);
-				$objFile = \FilesModel::findByUuid($uuid);
-				$strImage = $objFile->path;
-				if ($objFile) {
-					$arrRecord['image'] = $strImage;
-				} else {
-					$arrRecord['image'] = '';
+		if ($objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns))) {
+			while($objDirectoryRecord->next()) {
+				$arrRecord = $objDirectoryRecord->row();
+				
+				if ($arrRecord['image']) {
+					$strImage = '';
+					$uuid = \StringUtil::binToUuid($arrRecord['image']);
+					$objFile = \FilesModel::findByUuid($uuid);
+					$strImage = $objFile->path;
+					if ($objFile) {
+						$arrRecord['image'] = $strImage;
+					} else {
+						$arrRecord['image'] = '';
+					}
 				}
+				$arrResults[] = $arrRecord;
 			}
-			$arrResults[] = $arrRecord;
 		}
 		
 		$this->Template->directory_search = $this->id;
