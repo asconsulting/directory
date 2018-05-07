@@ -74,7 +74,7 @@ class DirectoryList extends \Contao\Module
 		$arrColumns = array("FIND_IN_SET('" .$objDirectorySection->id ."', sections)");
 		$arrColumns[] = "published='1'";
 			
-		$objDirectoryRecord = DirectoryRecord::find(array('column' => $arrColumns));
+		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns));
 		
 		if (!$objDirectoryRecord) {
 			return false;

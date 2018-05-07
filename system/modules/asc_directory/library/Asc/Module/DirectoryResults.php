@@ -132,7 +132,7 @@ class DirectoryResults extends \Contao\Module
 		
 		$arrColumns[] = "published='1'";
 			
-		$objDirectoryRecord = DirectoryRecord::find(array('column' => $arrColumns));
+		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns));
 		
 		if (!$objDirectoryRecord) {
 			return false;

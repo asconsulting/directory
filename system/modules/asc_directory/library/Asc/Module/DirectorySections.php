@@ -57,7 +57,7 @@ class DirectorySections extends \Contao\Module
     protected function compile()
     {			
 		$arrSections = array();
-		$objDirectorySection = DirectorySection::find(array('column' => array("published='1'")));
+		$objDirectorySection = DirectorySection::findAll(array('column' => array("published='1'")));
 		while ($objDirectorySection->next()) {
 			$arrSections[] = $objDirectorySection->row();
 		}
