@@ -63,14 +63,6 @@ class DirectoryList extends \Contao\Module
 		}
 		
 		$objDirectorySection = DirectorySection::findByIdOrAlias($pageAlias);
-		
-		// Return if no pending items were found
-		if (!$objDirectorySection)
-		{
-			$this->Template->errNotFound = TRUE;
-			return;
-		}
-		
 
 		if ($objDirectorySection->image) {
 			$strImage = '';
@@ -85,7 +77,9 @@ class DirectoryList extends \Contao\Module
 		$this->Template->section_name = $objDirectorySection->name;
 		$this->Template->section_description = $objDirectorySection->description;
 		
-		$arrColumns = array("FIND_IN_SET('" .$objDirectorySection->id ."', sections)");
+		if ($objDirectorySection) {
+			$arrColumns = array("FIND_IN_SET('" .$objDirectorySection->id ."', sections)");
+		}
 		$arrColumns[] = "published='1'";
 			
 		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns));
