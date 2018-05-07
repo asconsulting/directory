@@ -36,7 +36,7 @@ class DirectoryPage {
 		
 		// Is Record
 		if ($objDirectoryRecord = DirectoryRecord::findByIdOrAlias($arrFragments[0])) {
-			if ($objPage = \PageModel::findAll(array('column' => array("asc_directoryRecordPage='1'", "published='1'")))) {
+			if ($objPage = \PageModel::findAll(array('column' => array("asc_directoryReaderPage='1'", "published='1'")))) {
 				return array($objPage->alias);
 			}
 		}
