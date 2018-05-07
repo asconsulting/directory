@@ -56,6 +56,8 @@ class DirectorySearch extends \Contao\Module
      */
     protected function compile()
     {	
+		die(print_r($this->id, TRUE));
+		
 		$strSearch = \Input::post('s');
 		
 		$arrSections = array();
