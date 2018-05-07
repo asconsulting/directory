@@ -12,6 +12,8 @@
  
 namespace Asc;
 
+use Asc\Model\DirectoryRecord;
+use Asc\Model\DirectorySection;
 
 /**
  * Class Asc\DirectoryPage
