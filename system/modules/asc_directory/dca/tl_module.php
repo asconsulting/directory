@@ -14,7 +14,7 @@
  * Add a palette to tl_module
  */
 $GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_section'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_list'] 		= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_list'] 		= '{title_legend},name,headline,type;{config_legend},directoryShowAll;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_search'] 	= '{title_legend},name,headline,type;{config_legend},directoryFields;{redirect_legend:hide},jumpTo;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_results'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_reader'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
@@ -43,4 +43,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['directoryFields'] = array
 		),
 	'eval' 				=> array('multiple'=>true),
 	'sql' 				=> "blob NULL"
+);
+
+
+$GLOBALS['TL_DCA']['tl_module']['fields']['directoryShowAll'] = array
+(
+    'label'                   => &$GLOBALS['TL_LANG']['tl_module']['directoryShowAll'],
+    'exclude'                 => true,
+    'inputType'               => 'checkbox',
+    'eval'                    => array('tl_class'=>'m12 w50', 'fallback'=>true),
+    'sql'                     => "char(1) NOT NULL default ''",
 );

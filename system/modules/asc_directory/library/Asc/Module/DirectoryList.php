@@ -77,7 +77,7 @@ class DirectoryList extends \Contao\Module
 		$this->Template->section_name = $objDirectorySection->name;
 		$this->Template->section_description = $objDirectorySection->description;
 		
-		if ($objDirectorySection) {
+		if ($objDirectorySection || !$this->directoryShowAll) {
 			$arrColumns = array("FIND_IN_SET('" .$objDirectorySection->id ."', sections)");
 		}
 		$arrColumns[] = "published='1'";
