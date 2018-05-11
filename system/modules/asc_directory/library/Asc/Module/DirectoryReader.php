@@ -56,6 +56,8 @@ class DirectoryReader extends \Contao\Module
      */
     protected function compile()
     {
+		$strSectionOrder = ($this->sectionSortField ? $this->sectionSortField : 'name') ." " .($this->sectionSortOrder ? $this->sectionSortOrder : 'ASC');
+		
 		$pageAlias = \Environment::get('request');
 		if (substr($pageAlias, -5) == '.html') {
 			$pageAlias = substr($pageAlias, 0, -5);
@@ -69,11 +71,11 @@ class DirectoryReader extends \Contao\Module
 			$this->Template->errNotFound = TRUE;
 			return;
 		}
-		
+
 		$arrSections = explode(',', $objDirectoryRecord->sections);
 		if (!is_array($arrSections)) {$arrSections = array();}
 		
-		$objDirectorySection = DirectorySection::findMultipleByIds($arrSections, array('order' => 'name'));
+		$objDirectorySection = DirectorySection::findMultipleByIds($arrSections, array('order' => $strSectionOrder));
 		$arrSections = array();
 		while ($objDirectorySection->next()) {
 			$arrRecord = $objDirectorySection->row();
@@ -104,35 +106,6 @@ class DirectoryReader extends \Contao\Module
 				$arrRecord['image'] = '';
 			}
 		}
-		if ($arrRecord['sections']) {
-			if (!is_array($arrRecord['sections'])) {
-				$arrRecord['sections'] = explode(',', $arrRecord['sections']);
-			}
-			if (!is_array($arrRecord['sections'])) {
-				$arrRecord['sections'] = array();
-			}
-			$arrSections = array();
-			foreach($arrRecord['sections'] as $section) {
-				$objDirectorySection = DirectorySection::findByPk($section);
-				if ($objDirectorySection) {
-					if ($objDirectorySection->published) {
-						$arrSection = $objDirectorySection->row();
-						if ($objDirectorySection->image) {
-							$strImage = '';
-							$uuid = \StringUtil::binToUuid($objDirectorySection->image);
-							$objFile = \FilesModel::findByUuid($uuid);
-							$strImage = $objFile->path;
-							if ($objFile) {
-								$arrSection['image'] = $strImage;
-							}
-						}
-						$arrSections[$section] = $arrSection;
-					}
-				}
-			}
-			$arrRecord['sections'] = $arrSections;
-		}
-
 		
 		$this->Template->setData($arrRecord);
 		$this->Template->sections = $arrSections;	

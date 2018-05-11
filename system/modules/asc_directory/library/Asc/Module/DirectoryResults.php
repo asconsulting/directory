@@ -66,6 +66,10 @@ class DirectoryResults extends \Contao\Module
 		if (!$objSearchModule || $objSearchModule->type != 'dir_search') {
 			return FALSE;
 		}
+		
+				
+		$strSectionOrder = ($objSearchModule->sectionSortField ? $objSearchModule->sectionSortField : 'name') ." " .($objSearchModule->sectionSortOrder ? $objSearchModule->sectionSortOrder : 'ASC');
+		$strRecordOrder = ($objSearchModule->recordSortField ? $objSearchModule->recordSortField : 'name') ." " .($objSearchModule->recordSortOrder ? $objSearchModule->recordSortOrder : 'ASC');
 
 		$this->Template->results = array();
 		
@@ -104,7 +108,7 @@ class DirectoryResults extends \Contao\Module
 		$arrSearchSections = \Input::post('section');
 		
 		$arrSections = array();
-		$objDirectorySection = DirectorySection::findAll(array('order' => 'name'));
+		$objDirectorySection = DirectorySection::findAll(array('order' => $strSectionOrder));
 		
 		while ($objDirectorySection->next()) {
 			if (in_array($objDirectorySection->id, $arrSearchSections) && $objDirectorySection->published) { 
@@ -151,37 +155,33 @@ class DirectoryResults extends \Contao\Module
 		$arrColumns[] = "published='1'";
 		
 		$arrResults = array();
-		if ($objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns))) {
+		if ($objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns, 'order'=>$strSectionOrder))) {
 			while($objDirectoryRecord->next()) {
 				$arrRecord = $objDirectoryRecord->row();
-				if ($arrRecord['sections']) {
-					if (!is_array($arrRecord['sections'])) {
-						$arrRecord['sections'] = explode(',', $arrRecord['sections']);
-					}
-					if (!is_array($arrRecord['sections'])) {
-						$arrRecord['sections'] = array();
-					}
-					$arrSections = array();
-					foreach($arrRecord['sections'] as $section) {
-						$objDirectorySection = DirectorySection::findByPk($section);
-						if ($objDirectorySection) {
-							if ($objDirectorySection->published) {
-								$arrSection = $objDirectorySection->row();
-								if ($objDirectorySection->image) {
-									$strImage = '';
-									$uuid = \StringUtil::binToUuid($objDirectorySection->image);
-									$objFile = \FilesModel::findByUuid($uuid);
-									$strImage = $objFile->path;
-									if ($objFile) {
-										$arrSection['image'] = $strImage;
-									}
-								}
-								$arrSections[$section] = $arrSection;
-							}
+				
+				$arrSections = explode(',', $objDirectoryRecord->sections);
+				if (!is_array($arrSections)) {$arrSections = array();}
+				
+				$objDirectorySection = DirectorySection::findMultipleByIds($arrSections, array('order' => $strSectionOrder));
+				$arrSections = array();
+				while ($objDirectorySection->next()) {
+					$arrSection = $objDirectorySection->row();
+					
+					if ($arrSection['image']) {
+						$strImage = '';
+						$uuid = \StringUtil::binToUuid($arrSection['image']);
+						$objFile = \FilesModel::findByUuid($uuid);
+						$strImage = $objFile->path;
+						if ($objFile) {
+							$arrSection['image'] = $strImage;
+						} else {
+							$arrSection['image'] = '';
 						}
 					}
-					$arrRecord['sections'] = $arrSections;
+					$arrSections[] = $arrSection;
 				}
+				$arrRecord['sections'] = $arrSections;
+
 				if ($arrRecord['image']) {
 					$strImage = '';
 					$uuid = \StringUtil::binToUuid($arrRecord['image']);

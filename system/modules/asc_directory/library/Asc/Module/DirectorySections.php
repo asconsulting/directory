@@ -56,8 +56,11 @@ class DirectorySections extends \Contao\Module
      */
     protected function compile()
     {			
+	
+		$strSectionOrder = ($this->sectionSortField ? $this->sectionSortField : 'name') ." " .($this->sectionSortOrder ? $this->sectionSortOrder : 'ASC');
+			
 		$arrSections = array();
-		$objDirectorySection = DirectorySection::findAll(array('column' => array("published='1'"), 'order'=>'name'));
+		$objDirectorySection = DirectorySection::findAll(array('column' => array("published='1'"), 'order'=>$strSectionOrder));
 		while ($objDirectorySection->next()) {
 			$arrSection = $objDirectorySection->row();
 			

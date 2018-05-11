@@ -56,10 +56,11 @@ class DirectorySearch extends \Contao\Module
      */
     protected function compile()
     {	
+		$strSectionOrder = ($this->sectionSortField ? $this->sectionSortField : 'name') ." " .($this->sectionSortOrder ? $this->sectionSortOrder : 'ASC');
 		
 		$strSearch = \Input::post('s');
 		
-		$arrOptions = array('column'=>array('published=1'), 'order'=>'name');
+		$arrOptions = array('column'=>array('published=1'), 'order'=>$strSectionOrder);
 		$objDirectorySection = DirectorySection::findAll($arrOptions);
 		
 		$arrSections = array();
