@@ -15,14 +15,18 @@
  */
 ClassLoader::addClasses(array
 (
+	
+    'Asc\Backend\Record' 				=> 'system/modules/asc_directory/library/Asc/Module/DirectoryRecord.php',
+	'Asc\Backend\Section' 				=> 'system/modules/asc_directory/library/Asc/Module/DirectorySection.php',
+
     'Asc\Module\DirectorySections' 		=> 'system/modules/asc_directory/library/Asc/Module/DirectorySections.php',
     'Asc\Module\DirectoryList' 			=> 'system/modules/asc_directory/library/Asc/Module/DirectoryList.php',
     'Asc\Module\DirectorySearch' 		=> 'system/modules/asc_directory/library/Asc/Module/DirectorySearch.php',
 	'Asc\Module\DirectoryResults' 		=> 'system/modules/asc_directory/library/Asc/Module/DirectoryResults.php',
 	'Asc\Module\DirectoryReader' 		=> 'system/modules/asc_directory/library/Asc/Module/DirectoryReader.php',
 	
-    'Asc\Model\DirectoryRecord' 		=> 'system/modules/asc_directory/library/Asc/Module/DirectoryRecord.php',
-	'Asc\Model\DirectorySection' 		=> 'system/modules/asc_directory/library/Asc/Module/DirectorySection.php',
+    'Asc\Backend\Record' 				=> 'system/modules/asc_directory/library/Asc/Backend/Record.php',
+	'Asc\Backend\Section' 				=> 'system/modules/asc_directory/library/Asc/Backend/Section.php',
 ));
 
 /**

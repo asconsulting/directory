@@ -62,8 +62,12 @@ class DirectoryList extends \Contao\Module
 			$pageAlias = substr($pageAlias, 0, -5);
 		}
 		
-		$objDirectorySection = DirectorySection::findByIdOrAlias($pageAlias);
-
+		if ($objDirectorySection = DirectorySection::findByIdOrAlias($pageAlias)) {
+			$this->Template->section = $pageAlias;
+		} else {
+			$this->Template->section = false;
+		}
+		
 		if ($objDirectorySection->image) {
 			$strImage = '';
 			$uuid = \StringUtil::binToUuid($objDirectorySection->image);
@@ -106,7 +110,17 @@ class DirectoryList extends \Contao\Module
 					$objDirectorySection = DirectorySection::findByPk($section);
 					if ($objDirectorySection) {
 						if ($objDirectorySection->published) {
-							$arrSections[$section] = $objDirectorySection->row();
+							$arrSection = $objDirectorySection->row();
+							if ($objDirectorySection->image) {
+								$strImage = '';
+								$uuid = \StringUtil::binToUuid($objDirectorySection->image);
+								$objFile = \FilesModel::findByUuid($uuid);
+								$strImage = $objFile->path;
+								if ($objFile) {
+									$arrSection['image'] = $strImage;
+								}
+							}
+							$arrSections[$section] = $arrSection;
 						}
 					}
 				}

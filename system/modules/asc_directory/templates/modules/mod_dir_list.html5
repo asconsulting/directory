@@ -3,12 +3,18 @@
 <<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
 <?php endif; ?>
 
+<?php if ($this->section): ?>
 <div class="section_header">
 	<h2><?php echo $this->section_name; ?></h2>
 	<?php if ($this->section_image): ?>
 	<img class='directory_image' src="<?php echo $this->section_image; ?>" alt="<?php echo $this->section_name; ?>"> 
 	<? endif; ?>
 </div>
+<?php else: ?>
+<div class="section_header">
+	<h2>All Records</h2>
+</div>
+<?php endif; ?>
 
 <?php if(!empty($this->records)): ?>
 
@@ -138,7 +144,9 @@
 		<?php foreach ($record['sections'] as $section): ?> 
 		<li class="directory_section">
 			<h2><a href="<?php echo $section['alias']; ?>.html"><?php echo $section['name']; ?></a></h2>
+			<?php if ($section['image']): ?>
 			<img class='directory_image' src="<?php echo $section['image']; ?>" alt="<?php echo $section['name']; ?>"> 
+			<?php endif; ?>
 			<?php echo $section['description']; ?>
 		</li>
 		<?php endforeach; ?>

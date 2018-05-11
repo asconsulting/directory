@@ -43,8 +43,9 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
         ),
         'label' => array
         (
-            'fields'                  => array('name'),
-            'format'                  => '%s'
+            'fields'                  => array('name', 'image'),
+            'format'                  => '%s - %s',
+			'label_callback'        => array('Asc\Backend\Record', 'generateLabel')
         ),
         'global_operations' => array
         (
