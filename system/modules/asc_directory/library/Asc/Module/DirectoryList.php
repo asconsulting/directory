@@ -73,8 +73,6 @@ class DirectoryList extends \Contao\Module
 				$this->Template->section_image = $strImage;
 			}
 		}
-		
-		die(print_r($objDirectorySection, TRUE));
 
 		$this->Template->section_name = $objDirectorySection->name;
 		$this->Template->section_description = $objDirectorySection->description;
@@ -107,10 +105,8 @@ class DirectoryList extends \Contao\Module
 				foreach($arrRecord['sections'] as $section) {
 					$objDirectorySection = DirectorySection::findByPk($section);
 					if ($objDirectorySection) {
-						while ($objDirectorySection->next()) {
-							if ($objDirectorySection->published) {
-								$arrSections[$section] = $objDirectorySection->row();
-							}
+						if ($objDirectorySection->published) {
+							$arrSections[$section] = $objDirectorySection->row();
 						}
 					}
 				}
