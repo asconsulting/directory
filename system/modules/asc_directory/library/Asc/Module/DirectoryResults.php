@@ -26,7 +26,7 @@ class DirectoryResults extends \Contao\Module
      * Template
      * @var string
      */
-    protected $strTemplate = 'mod_directory_results';
+    protected $strTemplate = 'mod_dir_results';
 
  
     /**
@@ -39,7 +39,7 @@ class DirectoryResults extends \Contao\Module
         {
             $objTemplate = new \BackendTemplate('be_wildcard');
  
-            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['asc_directory_results'][0]) . ' ###';
+            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['dir_results'][0]) . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
@@ -63,7 +63,7 @@ class DirectoryResults extends \Contao\Module
 		}
 		
 		$objSearchModule = ModuleModel::findByPk($intSearchModule);
-		if (!$objSearchModule || $objSearchModule->type != 'asc_directory_search') {
+		if (!$objSearchModule || $objSearchModule->type != 'dir_search') {
 			return FALSE;
 		}
 

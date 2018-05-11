@@ -25,7 +25,7 @@ class DirectorySearch extends \Contao\Module
      * Template
      * @var string
      */
-    protected $strTemplate = 'mod_directory_search';
+    protected $strTemplate = 'mod_dir_search';
 
  
     /**
@@ -38,7 +38,7 @@ class DirectorySearch extends \Contao\Module
         {
             $objTemplate = new \BackendTemplate('be_wildcard');
  
-            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['asc_directory_search'][0]) . ' ###';
+            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['dir_search'][0]) . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;

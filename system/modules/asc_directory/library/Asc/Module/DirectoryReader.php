@@ -25,7 +25,7 @@ class DirectoryReader extends \Contao\Module
      * Template
      * @var string
      */
-    protected $strTemplate = 'mod_directory_reader';
+    protected $strTemplate = 'mod_dir_reader';
 
  
     /**
@@ -38,7 +38,7 @@ class DirectoryReader extends \Contao\Module
         {
             $objTemplate = new \BackendTemplate('be_wildcard');
  
-            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['asc_directory_reader'][0]) . ' ###';
+            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['dir_reader'][0]) . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;

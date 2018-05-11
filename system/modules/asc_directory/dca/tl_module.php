@@ -14,10 +14,10 @@
  * Add a palette to tl_module
  */
 $GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_section'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_list'] 		= '{title_legend},name,headline,type;{config_legend},directoryShowAll;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_search'] 	= '{title_legend},name,headline,type;{config_legend},directoryFields;{redirect_legend:hide},jumpTo;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_results'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['asc_directory_reader'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['dir_list'] 		= '{title_legend},name,headline,type;{config_legend},directoryShowAll;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['dir_search'] 	= '{title_legend},name,headline,type;{config_legend},directoryFields;{redirect_legend:hide},jumpTo;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['dir_results'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['dir_reader'] 	= '{title_legend},name,headline,type;{template_legend:hide},customTpl;{expert_legend:hide},guests,cssID,space';
 
 // Search Fields
 $GLOBALS['TL_DCA']['tl_module']['fields']['directoryFields'] = array

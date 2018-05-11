@@ -25,7 +25,7 @@ class DirectoryList extends \Contao\Module
      * Template
      * @var string
      */
-    protected $strTemplate = 'mod_directory_list';
+    protected $strTemplate = 'mod_dir_list';
 
  
     /**
@@ -38,7 +38,7 @@ class DirectoryList extends \Contao\Module
         {
             $objTemplate = new \BackendTemplate('be_wildcard');
  
-            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['asc_directory_list'][0]) . ' ###';
+            $objTemplate->wildcard = '### ' . utf8_strtoupper($GLOBALS['TL_LANG']['FMD']['dir_list'][0]) . ' ###';
             $objTemplate->title = $this->headline;
             $objTemplate->id = $this->id;
             $objTemplate->link = $this->name;
@@ -74,6 +74,8 @@ class DirectoryList extends \Contao\Module
 			}
 		}
 		
+		die(print_r($objDirectorySection, TRUE));
+
 		$this->Template->section_name = $objDirectorySection->name;
 		$this->Template->section_description = $objDirectorySection->description;
 		
@@ -91,6 +93,29 @@ class DirectoryList extends \Contao\Module
 		$arrResults = array();
 		while($objDirectoryRecord->next()) {
 			$arrRecord = $objDirectoryRecord->row();
+			
+			$arrSections = array();
+			
+			if ($arrRecord['sections']) {
+				if (!is_array($arrRecord['sections'])) {
+					$arrRecord['sections'] = explode(',', $arrRecord['sections']);
+				}
+				if (!is_array($arrRecord['sections'])) {
+					$arrRecord['sections'] = array();
+				}
+				$arrSections = array();
+				foreach($arrRecord['sections'] as $section) {
+					$objDirectorySection = DirectorySection::findByPk($section);
+					if ($objDirectorySection) {
+						while ($objDirectorySection->next()) {
+							if ($objDirectorySection->published) {
+								$arrSections[$section] = $objDirectorySection->row();
+							}
+						}
+					}
+				}
+				$arrRecord['sections'] = $arrSections;
+			}
 			
 			if ($arrRecord['image']) {
 				$strImage = '';

@@ -220,7 +220,7 @@ $GLOBALS['TL_DCA']['tl_asc_directory'] = array
         ),
 		'zip' => array
         (
-            'label'                   => &$GLOBALS['TL_LANG']['tl_asc_directory']['city'],
+            'label'                   => &$GLOBALS['TL_LANG']['tl_asc_directory']['zip'],
             'exclude'                 => true,
             'search'                  => true,
             'inputType'               => 'text',

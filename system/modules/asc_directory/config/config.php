@@ -13,11 +13,11 @@
 /**
  * Front end modules
  */ 
-$GLOBALS['FE_MOD']['asc_directory']['asc_directory_sections'] 	= 'Asc\Module\DirectorySections';
-$GLOBALS['FE_MOD']['asc_directory']['asc_directory_list'] 		= 'Asc\Module\DirectoryList';
-$GLOBALS['FE_MOD']['asc_directory']['asc_directory_search'] 	= 'Asc\Module\DirectorySearch'; 
-$GLOBALS['FE_MOD']['asc_directory']['asc_directory_results'] 	= 'Asc\Module\DirectoryResults'; 
-$GLOBALS['FE_MOD']['asc_directory']['asc_directory_reader'] 	= 'Asc\Module\DirectoryReader'; 
+$GLOBALS['FE_MOD']['asc_directory']['dir_sections'] 	= 'Asc\Module\DirectorySections';
+$GLOBALS['FE_MOD']['asc_directory']['dir_list'] 		= 'Asc\Module\DirectoryList';
+$GLOBALS['FE_MOD']['asc_directory']['dir_search'] 		= 'Asc\Module\DirectorySearch'; 
+$GLOBALS['FE_MOD']['asc_directory']['dir_results'] 		= 'Asc\Module\DirectoryResults'; 
+$GLOBALS['FE_MOD']['asc_directory']['dir_reader'] 		= 'Asc\Module\DirectoryReader'; 
  
  
 /**
