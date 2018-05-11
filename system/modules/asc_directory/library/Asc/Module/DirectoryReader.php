@@ -73,7 +73,7 @@ class DirectoryReader extends \Contao\Module
 		$arrSections = explode(',', $objDirectoryRecord->sections);
 		if (!is_array($arrSections)) {$arrSections = array();}
 		
-		$objDirectorySection = DirectorySection::findMultipleByIds($arrSections);
+		$objDirectorySection = DirectorySection::findMultipleByIds($arrSections, array('order' => 'name'));
 		$arrSections = array();
 		while ($objDirectorySection->next()) {
 			$arrRecord = $objDirectorySection->row();
@@ -103,6 +103,34 @@ class DirectoryReader extends \Contao\Module
 			} else {
 				$arrRecord['image'] = '';
 			}
+		}
+		if ($arrRecord['sections']) {
+			if (!is_array($arrRecord['sections'])) {
+				$arrRecord['sections'] = explode(',', $arrRecord['sections']);
+			}
+			if (!is_array($arrRecord['sections'])) {
+				$arrRecord['sections'] = array();
+			}
+			$arrSections = array();
+			foreach($arrRecord['sections'] as $section) {
+				$objDirectorySection = DirectorySection::findByPk($section);
+				if ($objDirectorySection) {
+					if ($objDirectorySection->published) {
+						$arrSection = $objDirectorySection->row();
+						if ($objDirectorySection->image) {
+							$strImage = '';
+							$uuid = \StringUtil::binToUuid($objDirectorySection->image);
+							$objFile = \FilesModel::findByUuid($uuid);
+							$strImage = $objFile->path;
+							if ($objFile) {
+								$arrSection['image'] = $strImage;
+							}
+						}
+						$arrSections[$section] = $arrSection;
+					}
+				}
+			}
+			$arrRecord['sections'] = $arrSections;
 		}
 
 		

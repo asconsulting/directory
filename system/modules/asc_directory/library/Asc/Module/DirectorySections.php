@@ -57,22 +57,22 @@ class DirectorySections extends \Contao\Module
     protected function compile()
     {			
 		$arrSections = array();
-		$objDirectorySection = DirectorySection::findAll(array('column' => array("published='1'")));
+		$objDirectorySection = DirectorySection::findAll(array('column' => array("published='1'"), 'order'=>'name'));
 		while ($objDirectorySection->next()) {
-			$arrRecord = $objDirectorySection->row();
+			$arrSection = $objDirectorySection->row();
 			
-			if ($arrRecord['image']) {
+			if ($arrSection['image']) {
 				$strImage = '';
-				$uuid = \StringUtil::binToUuid($arrRecord['image']);
+				$uuid = \StringUtil::binToUuid($arrSection['image']);
 				$objFile = \FilesModel::findByUuid($uuid);
 				$strImage = $objFile->path;
 				if ($objFile) {
-					$arrRecord['image'] = $strImage;
+					$arrSection['image'] = $strImage;
 				} else {
-					$arrRecord['image'] = '';
+					$arrSection['image'] = '';
 				}
 			}
-			$arrSections[] = $arrRecord;
+			$arrSections[] = $arrSection;
 		}
 		$this->Template->sections = $arrSections;	
     }

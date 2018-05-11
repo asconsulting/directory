@@ -104,7 +104,7 @@ class DirectoryResults extends \Contao\Module
 		$arrSearchSections = \Input::post('section');
 		
 		$arrSections = array();
-		$objDirectorySection = DirectorySection::findAll();
+		$objDirectorySection = DirectorySection::findAll(array('order' => 'name'));
 		
 		while ($objDirectorySection->next()) {
 			if (in_array($objDirectorySection->id, $arrSearchSections) && $objDirectorySection->published) { 
@@ -154,7 +154,34 @@ class DirectoryResults extends \Contao\Module
 		if ($objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns))) {
 			while($objDirectoryRecord->next()) {
 				$arrRecord = $objDirectoryRecord->row();
-				
+				if ($arrRecord['sections']) {
+					if (!is_array($arrRecord['sections'])) {
+						$arrRecord['sections'] = explode(',', $arrRecord['sections']);
+					}
+					if (!is_array($arrRecord['sections'])) {
+						$arrRecord['sections'] = array();
+					}
+					$arrSections = array();
+					foreach($arrRecord['sections'] as $section) {
+						$objDirectorySection = DirectorySection::findByPk($section);
+						if ($objDirectorySection) {
+							if ($objDirectorySection->published) {
+								$arrSection = $objDirectorySection->row();
+								if ($objDirectorySection->image) {
+									$strImage = '';
+									$uuid = \StringUtil::binToUuid($objDirectorySection->image);
+									$objFile = \FilesModel::findByUuid($uuid);
+									$strImage = $objFile->path;
+									if ($objFile) {
+										$arrSection['image'] = $strImage;
+									}
+								}
+								$arrSections[$section] = $arrSection;
+							}
+						}
+					}
+					$arrRecord['sections'] = $arrSections;
+				}
 				if ($arrRecord['image']) {
 					$strImage = '';
 					$uuid = \StringUtil::binToUuid($arrRecord['image']);

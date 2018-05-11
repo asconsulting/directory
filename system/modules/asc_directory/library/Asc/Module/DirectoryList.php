@@ -86,7 +86,7 @@ class DirectoryList extends \Contao\Module
 		}
 		$arrColumns[] = "published='1'";
 			
-		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns));
+		$objDirectoryRecord = DirectoryRecord::findAll(array('column' => $arrColumns, 'order' => 'name'));
 		
 		if (!$objDirectoryRecord) {
 			return false;
@@ -95,8 +95,6 @@ class DirectoryList extends \Contao\Module
 		$arrResults = array();
 		while($objDirectoryRecord->next()) {
 			$arrRecord = $objDirectoryRecord->row();
-			
-			$arrSections = array();
 			
 			if ($arrRecord['sections']) {
 				if (!is_array($arrRecord['sections'])) {

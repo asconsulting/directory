@@ -59,7 +59,7 @@ class DirectorySearch extends \Contao\Module
 		
 		$strSearch = \Input::post('s');
 		
-		$arrOptions = array('column'=>array('published=1'));
+		$arrOptions = array('column'=>array('published=1'), 'order'=>'name');
 		$objDirectorySection = DirectorySection::findAll($arrOptions);
 		
 		$arrSections = array();
