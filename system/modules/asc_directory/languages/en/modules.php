@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * ASC - Directory
+ *
+ * Copyright (C) 2018 Andrew Stevens Consulting
+ *
+ * @package    AscDirectory
+ * @link       https://andrewstevens.consulting
+ */
+ 
  
 /**
  * Front end modules
